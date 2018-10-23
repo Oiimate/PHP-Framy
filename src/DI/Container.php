@@ -33,6 +33,6 @@ class Container
             return $instance;
         }
 
-        return $this->reflection;
+        return $this->reflection->autoWire($instance->get());
     }
 }
