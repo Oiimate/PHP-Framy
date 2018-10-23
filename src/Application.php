@@ -19,6 +19,7 @@ class Application {
     public function setupContainer() {
         $this->reflection = new Reflection();
         $this->container = new Container($this->reflection);
+        $test = $this->container->getInstance('Framy\Routing\Test');
     }
 
     public function setupRouting() {

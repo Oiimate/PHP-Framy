@@ -1,11 +1,13 @@
 <?php
 namespace Framy\Routing;
 
-
 class Test
 {
-    public function __construct()
+    private $test2;
+
+    public function __construct(Test2 $test2)
     {
-        echo "hi";
+        $this->test2 = $test2;
+        echo "Test";
     }
 }

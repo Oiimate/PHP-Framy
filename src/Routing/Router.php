@@ -21,7 +21,6 @@ class Router {
     public function __construct(Container $container) {
         $this->container = $container;
 
-        print_r($this->container->getInstance('Framy\Routing\Test'));
         if (isset($_GET['url'])) {
             $this->url = $_GET['url'];
         }

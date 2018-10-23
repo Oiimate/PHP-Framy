@@ -6,6 +6,6 @@ class TestMiddleware extends Middleware
 {
     public function run()
     {
-        echo "Test from TestMiddleware ";
+        echo " Test from TestMiddleware ";
     }
 }

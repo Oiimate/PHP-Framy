@@ -130,7 +130,6 @@ class Route {
             if ($this->parameters) {
                 $request->setQueryParameters($this->parameters);
             }
-
             return $controller->$methodName($request);
         }
 
