@@ -5,6 +5,7 @@ namespace Framy;
 use Framy\Routing\Router;
 use Framy\DI\Container;
 use Framy\DI\Reflection;
+
 class Application {
 
     private $router;
