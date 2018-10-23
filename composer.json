@@ -1,0 +1,10 @@
+{
+    "name": "oiimate/phpframy",
+    "description": "php framework",
+    "autoload": {
+        "psr-4": {
+            "Framy\\": "src/"
+        }
+    },
+    "require": {}
+}
