@@ -6,8 +6,11 @@ use PDO;
 
 class Database
 {
-    private $config;
     private $connection;
+    private $host;
+    private $dbname;
+    private $user;
+    private $password;
 
     /**
      * MySQL constructor.
@@ -16,7 +19,12 @@ class Database
      */
     public function __construct(array $config)
     {
-        $this->config = $config['db.options'];
+        $dbConfig = $config['db.options'];
+        $this->host = $dbConfig['host'];
+        $this->dbname = $dbConfig['dbname'];
+        $this->user = $dbConfig['user'];
+        $this->password = $dbConfig['password'];
+
         $this->checkConfig();
     }
 
@@ -24,25 +32,26 @@ class Database
      * @throws Exception
      */
     private function checkConfig() {
-        if (!isset($this->config['host'])) {
+        if (!isset($this->host)) {
             throw new Exception("There is no host defined in the config");
         }
 
-        if (!isset($this->config['dbname'])) {
+        if (!isset($this->dbname)) {
             throw new Exception("There is no database name defined in the config");
         }
 
-        if (!isset($this->config['user'])) {
+        if (!isset($this->user)) {
             throw new Exception("There is no user defined in the config");
         }
 
-        if (!isset($this->config['password'])) {
+        if (!isset($this->password)) {
             throw new Exception("There is no host defined in the config");
         }
     }
 
     public function createConnection() {
-        $connection = new PDO("mysql:host={$this->config['host']};dbname={$this->config['dbname']}", $this->config['user'], $this->config['password']);
+        $dsn = "mysql:host={$this->host};dbname={$this->dbname}";
+        $connection = new PDO($dsn, $this->user, $this->password);
         $this->connection = $connection;
     }
 
