@@ -1,21 +1,29 @@
 <?php
-
 namespace Framy;
-
 use Framy\Models\User;
+use Framy\MySQL\Database;
 use Framy\Routing\Router;
 use Framy\DI\Container;
 use Framy\DI\Reflection;
 
 class Application {
 
+    private $config;
     private $router;
     private $container;
     private $reflection;
+    private $mysql;
 
-    public function __construct() {
+    /**
+     * Application constructor.
+     * @param array $config
+     * @throws \Exception
+     */
+    public function __construct(array $config) {
+        $this->config = $config;
         $this->setupContainer();
         $this->setupRouting();
+        $this->setupMySQL();
     }
 
     public function setupContainer() {
@@ -30,6 +38,14 @@ class Application {
 
     public function setupRouting() {
         $this->router = new Router($this->container);
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function setupMySQL() {
+        $this->mysql = new Database($this->config);
+        $this->mysql->createConnection();
     }
 
     public function getContainer() {

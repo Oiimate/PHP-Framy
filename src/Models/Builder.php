@@ -21,11 +21,14 @@ class Builder {
         return $this;
     }
 
+    public function rawSql($query) {
+    }
+
     public function get() {
         $query = null;
 
         if ($this->select) {
-            $query = "SELECT " . $this->select . " FROM " . $this->from;
+            $query .= "SELECT " . $this->select . " FROM " . $this->from;
         }
 
         if ($this->where) {
@@ -33,7 +36,7 @@ class Builder {
         }
 
         if (!$query) {
-            $query = "SELECT * FROM " . $this->from;
+            $query .= "SELECT * FROM " . $this->from;
         }
         print_r("<br/>");
         print_r($query);
