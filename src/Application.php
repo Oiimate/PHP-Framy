@@ -26,7 +26,7 @@ class Application {
         $this->setupMySQL();
     }
 
-    public function setupContainer() {
+    private function setupContainer() {
         $this->reflection = new Reflection();
         $this->container = new Container($this->reflection);
 //        $test = $this->container->getInstance('Framy\Routing\Test');
@@ -36,16 +36,20 @@ class Application {
 
     }
 
-    public function setupRouting() {
-        $this->router = new Router($this->container);
+    private function setupRouting() {
+        $this->router = new Router($this);
     }
 
     /**
      * @throws \Exception
      */
-    public function setupMySQL() {
+    private function setupMySQL() {
         $this->mysql = new Database($this->config);
         $this->mysql->createConnection();
+    }
+
+    public function getMySQL() {
+        return $this->mysql;
     }
 
     public function getContainer() {

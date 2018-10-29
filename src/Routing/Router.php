@@ -3,7 +3,7 @@
 namespace Framy\Routing;
 
 use Exception;
-use Framy\DI\Container;
+use Framy\Application;
 use Framy\Middleware\MiddlewareInterface;
 
 class Router {
@@ -12,14 +12,14 @@ class Router {
     private $routes = [];
     private $middleware = [];
     private $currentRoute;
-    private $container;
+    private $app;
 
     /**
      * Router constructor.
-     * @param Container $container
+     * @param Application $app
      */
-    public function __construct(Container $container) {
-        $this->container = $container;
+    public function __construct(Application $app) {
+        $this->app = $app;
 
         if (isset($_GET['url'])) {
             $this->url = $_GET['url'];
@@ -89,7 +89,7 @@ class Router {
      * @return Route
      */
     private function add(string $path, $callback, string $method) {
-        $route = (new Route($this->container))
+        $route = (new Route($this->app))
             ->setPath($path)
             ->setCallback($callback);
 

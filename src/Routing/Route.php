@@ -3,7 +3,7 @@
 namespace Framy\Routing;
 
 use Exception;
-use Framy\DI\Container;
+use Framy\Application;
 
 class Route {
 
@@ -11,10 +11,10 @@ class Route {
     private $callback;
     private $parameters = [];
     private $middleware;
-    private $container;
+    private $app;
 
-    public function __construct(Container $container) {
-        $this->container = $container;
+    public function __construct(Application $app) {
+        $this->app = $app;
     }
 
     /**
