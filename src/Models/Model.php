@@ -1,8 +1,6 @@
 <?php
 namespace Framy\Models;
 
-use Framy\Models\Builder;
-
 abstract class Model {
 
     protected $tableName;
@@ -11,7 +9,7 @@ abstract class Model {
         return $this->tableName;
     }
 
-    protected function builder() {
+    public function builder() {
         return (new Builder($this->tableName));
     }
 }

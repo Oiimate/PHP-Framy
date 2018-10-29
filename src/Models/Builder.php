@@ -3,7 +3,7 @@ namespace Framy\Models;
 
 class Builder {
 
-    private $select;
+    public $select;
     private $from;
     private $where;
 
@@ -12,13 +12,30 @@ class Builder {
     }
 
     public function select(... $select) {
-        $this->select = implode(" ", $select);
+        $this->select = implode(", ", $select);
+        return $this;
     }
 
     public function where(array $where) {
-        $this->where = $where;
+        $this->where = implode(', ', $where);
+        return $this;
     }
 
-    public function query() {
+    public function get() {
+        $query = null;
+
+        if ($this->select) {
+            $query = "SELECT " . $this->select . " FROM " . $this->from;
+        }
+
+        if ($this->where) {
+            $query .= " WHERE " . $this->where;
+        }
+
+        if (!$query) {
+            $query = "SELECT * FROM " . $this->from;
+        }
+        print_r("<br/>");
+        print_r($query);
     }
 }
