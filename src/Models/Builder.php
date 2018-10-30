@@ -20,10 +20,6 @@ class Builder {
         return $this;
     }
 
-    public function getshit() {
-        return $this->db;
-    }
-
     public function where(array $where) {
         $this->where = implode(', ', $where);
         return $this;

@@ -10,9 +10,9 @@ class Config {
     public function __construct() {
 
         $this->host = 'localhost';
-        $this->name = 'virusdb';
+        $this->name = '';
         $this->user = 'root';
-        $this->password = 'kip123';
+        $this->password = '';
     }
 
     public function getHost() {

@@ -30,10 +30,6 @@ class Application {
     private function setupContainer() {
         $this->reflection = new Reflection();
         $this->container = new Container($this->reflection);
-//        $test = $this->container->getInstance('Framy\Routing\Test');
-//        $model = new User();
-//        $model->select('id, id2')->where(['id = 1', 'id2 > 2'])->get();
-
     }
 
     private function setupRouting() {
