@@ -41,7 +41,6 @@ class Application {
      */
     private function setupMySQL() {
         $this->mysql = new Database($this->config);
-        $this->mysql->createConnection();
     }
 
     public function getMySQL() {

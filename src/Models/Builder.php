@@ -13,6 +13,8 @@ class Builder {
     public function __construct(Database $database, $tableName) {
         $this->db = $database;
         $this->from = $tableName;
+
+        print_r($this->db->getConnection());
     }
 
     public function select(... $select) {

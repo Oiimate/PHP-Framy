@@ -14,7 +14,7 @@ class Database
 
     /**
      * MySQL constructor.
-     * @param array $config
+     * @param Config $config
      * @throws Exception
      */
     public function __construct(Config $config)
@@ -25,6 +25,7 @@ class Database
         $this->password = $config->getPassword();
 
         $this->checkConfig();
+        $this->createConnection();
     }
 
     /**
