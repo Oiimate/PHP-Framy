@@ -1,6 +1,7 @@
 <?php
 namespace Framy;
 use Framy\Models\User;
+use Framy\MySQL\Config;
 use Framy\MySQL\Database;
 use Framy\Routing\Router;
 use Framy\DI\Container;
@@ -16,10 +17,10 @@ class Application {
 
     /**
      * Application constructor.
-     * @param array $config
+     * @param Config $config
      * @throws \Exception
      */
-    public function __construct(array $config) {
+    public function __construct(Config $config) {
         $this->config = $config;
         $this->setupContainer();
         $this->setupRouting();
@@ -30,8 +31,8 @@ class Application {
         $this->reflection = new Reflection();
         $this->container = new Container($this->reflection);
 //        $test = $this->container->getInstance('Framy\Routing\Test');
-        $model = new User();
-        $model->select('id, id2')->where(['id = 1', 'id2 > 2'])->get();
+//        $model = new User();
+//        $model->select('id, id2')->where(['id = 1', 'id2 > 2'])->get();
 
     }
 

@@ -20,6 +20,10 @@ class Builder {
         return $this;
     }
 
+    public function getshit() {
+        return $this->db;
+    }
+
     public function where(array $where) {
         $this->where = implode(', ', $where);
         return $this;
@@ -42,7 +46,6 @@ class Builder {
         if (!$query) {
             $query .= "SELECT * FROM " . $this->from;
         }
-        print_r("<br/>");
-        print_r($query);
+        return $query;
     }
 }

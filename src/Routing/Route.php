@@ -124,7 +124,9 @@ class Route {
                 $this->middleware->run();
             }
 
-            $controller = new $controller();
+//            $controller = new $controller();
+
+            $controller = $this->app->getContainer()->getInstance('Framy\Controllers\HomeController');
             $request = new $request();
 
             if ($this->parameters) {

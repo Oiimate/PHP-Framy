@@ -17,13 +17,12 @@ class Database
      * @param array $config
      * @throws Exception
      */
-    public function __construct(array $config)
+    public function __construct(Config $config)
     {
-        $dbConfig = $config['db.options'];
-        $this->host = $dbConfig['host'];
-        $this->dbname = $dbConfig['dbname'];
-        $this->user = $dbConfig['user'];
-        $this->password = $dbConfig['password'];
+        $this->host = $config->getHost();
+        $this->dbname = $config->getName();
+        $this->user = $config->getUser();
+        $this->password = $config->getPassword();
 
         $this->checkConfig();
     }
