@@ -1,13 +1,17 @@
 <?php
 namespace Framy\Models;
 
+use Framy\MySQL\Database;
+
 class Builder {
 
     public $select;
     private $from;
     private $where;
+    private $db;
 
-    public function __construct($tableName) {
+    public function __construct(Database $database, $tableName) {
+        $this->db = $database;
         $this->from = $tableName;
     }
 
