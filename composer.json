@@ -6,5 +6,7 @@
             "Framy\\": "src/"
         }
     },
-    "require": {}
+    "require": {
+        "twig/twig": "^2.0"
+    }
 }

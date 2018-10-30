@@ -125,12 +125,15 @@ class Route {
             }
 
             $controller = $this->app->getContainer()->getInstance($controller);
+            $twig = $this->app->getTwig();
+            $controller->setTwig($twig);
             $request = new $request();
+
 
             if ($this->parameters) {
                 $request->setQueryParameters($this->parameters);
             }
-            return $controller->$methodName($request);
+            return $controller->$methodName($twig, $request);
         }
 
         if (is_callable($this->callback)) {
