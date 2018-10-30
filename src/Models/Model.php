@@ -1,15 +1,15 @@
 <?php
 namespace Framy\Models;
 
-abstract class Model {
+abstract class Model extends Builder {
 
     protected $tableName;
 
-    protected function table() {
-        return $this->tableName;
+    public function __construct() {
+        parent::__construct($this->tableName);
     }
 
-    public function builder() {
-        return (new Builder($this->tableName));
+    protected function table() {
+        return $this->tableName;
     }
 }

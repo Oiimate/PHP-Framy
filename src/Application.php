@@ -31,8 +31,7 @@ class Application {
         $this->container = new Container($this->reflection);
 //        $test = $this->container->getInstance('Framy\Routing\Test');
         $model = new User();
-        $builder = $model->builder();
-        $builder->select('id, id2')->where(['id = 1', 'id2 > 2'])->get();
+        $model->select('id, id2')->where(['id = 1', 'id2 > 2'])->get();
 
     }
 
