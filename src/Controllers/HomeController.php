@@ -20,9 +20,10 @@ class HomeController extends Controller {
     }
 
     public function postView(Twig_Environment $twig, Request $request) {
-        $this->view('index');
-        print_r($this->user->select('id, id2')->where(['id = 1', 'id2 > 2'])->get());
-        echo '<form method=\'POST\' action=\'./test\'><input name=\'testform\'><input name=\'testform2\'><button type=\'submit\'>Submit</button></form>';
+        $user = $this->user;
+        $user->name = "yo";
+
+        $user->save($user);
     }
 
     public function postTest(Twig_Environment $twig, Request $request) {

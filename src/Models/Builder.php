@@ -5,7 +5,7 @@ use Framy\MySQL\Database;
 
 class Builder {
 
-    public $select;
+    private $select;
     private $from;
     private $where;
     private $db;
@@ -20,6 +20,8 @@ class Builder {
     public function select(... $select) {
         $this->select = implode(", ", $select);
         return $this;
+
+
     }
 
     public function where(array $where, array $columns = []) {
@@ -37,7 +39,7 @@ class Builder {
     }
 
     public function insert($insertColumns, $values, array $columns = []) {
-        $insert = "INSERT INTO {$this->from} ({$insertColumns})" . " VALUES ({$values})";
+        $insert = "INSERT INTO city ({$insertColumns})" . " VALUES ({$values})";
         return $this->rawSql($insert, $columns);
     }
 

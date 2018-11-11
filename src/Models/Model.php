@@ -14,4 +14,16 @@ abstract class Model extends Builder {
     protected function table() {
         return $this->tableName;
     }
+
+    public function save($object) {
+        $properties = get_object_vars($object);
+        unset($properties['tableName']);
+        $insertColumns = implode(", ", array_keys($properties));
+        $values = array_keys($properties);
+        foreach ($values as $key => $value) {
+            $values[$key] = ':' . $value;
+        }
+        $formattedValues = implode(", ", $values);
+        $this->insert($insertColumns, $formattedValues, $properties);
+    }
 }
