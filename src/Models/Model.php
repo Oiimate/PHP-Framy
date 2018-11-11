@@ -21,7 +21,6 @@ abstract class Model extends Builder {
 
         $insertColumns = implode(", ", array_keys($properties));
         $values = array_keys($properties);
-
         foreach ($values as $key => $value) {
             $values[$key] = ':' . $value;
         }

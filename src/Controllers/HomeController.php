@@ -4,14 +4,15 @@ namespace Framy\Controllers;
 
 use Framy\Http\Request;
 use Framy\Models\User;
+use Framy\MySQL\Database;
 use Twig_Environment;
 
 class HomeController extends Controller {
 
-    private $user;
+    private $db;
 
-    public function __construct(User $user) {
-        $this->user = $user;
+    public function __construct(Database $db) {
+        $this->db = $db;
     }
 
     public function index(Twig_Environment $twig, Request $request) {
@@ -20,7 +21,7 @@ class HomeController extends Controller {
     }
 
     public function postView(Twig_Environment $twig, Request $request) {
-        $user = $this->user;
+        $user = new User($this->db);
         $user->name = "yo";
 
         $saveUser = $user->save($user);

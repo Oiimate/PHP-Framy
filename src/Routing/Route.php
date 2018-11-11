@@ -115,33 +115,7 @@ class Route {
      * @return bool|mixed
      */
     public function call() {
-        if (is_string($this->callback)) {
-            list($controllerName, $methodName) = explode(':', $this->callback);
-            $controller = "Framy\\Controllers\\" . $controllerName . "Controller";
-            $request = "Framy\\Http\\" . "Request";
-
-            if (is_object($this->middleware)) {
-                $this->middleware->run();
-            }
-
-            $controller = $this->app->getContainer()->getInstance($controller);
-            $twig = $this->app->getTwig();
-            $controller->setTwig($twig);
-            $request = new $request();
-
-
-            if ($this->parameters) {
-                $request->setQueryParameters($this->parameters);
-            }
-            return $controller->$methodName($twig, $request);
-        }
-
-        if (is_callable($this->callback)) {
-            if (is_object($this->middleware)) {
-                $this->middleware->run();
-            }
-            return call_user_func_array($this->callback, $this->parameters);
-        }
-        return false;
+        $call = new Call($this->app, $this->callback, $this->middleware, $this->parameters);
+        return $call->execute();
     }
 }
