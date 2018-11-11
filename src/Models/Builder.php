@@ -57,10 +57,10 @@ class Builder {
         $result = $this->db->prepare($query);
         if ($columns) {
             $execute = $result->execute($columns);
-            return $result;
+            return $execute;
         }
         $execute = $result->execute();
-        return $result;
+        return $execute;
     }
 
     public function reset() {

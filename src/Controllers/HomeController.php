@@ -23,7 +23,13 @@ class HomeController extends Controller {
         $user = $this->user;
         $user->name = "yo";
 
-        $user->save($user);
+        $saveUser = $user->save($user);
+
+        if ($saveUser) {
+            echo "Added";
+        } else {
+            echo "Error";
+        }
     }
 
     public function postTest(Twig_Environment $twig, Request $request) {
