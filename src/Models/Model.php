@@ -51,7 +51,10 @@ abstract class Model extends Builder {
                 $model_id = $key;
                 $model_id_value = $value;
             } else {
-                $values[] = $key . "=" . '"' . $value . '"';
+                if (is_string($value)) {
+                    $value = '"' . $value . '"';
+                }
+                $values[] = $key . "=" . $value;
             }
         }
 
