@@ -20,8 +20,6 @@ class Builder {
     public function select(... $select) {
         $this->select = implode(", ", $select);
         return $this;
-
-
     }
 
     public function where(array $where, array $columns = []) {
@@ -43,7 +41,7 @@ class Builder {
         return $this->rawSql($insert, $columns);
     }
 
-    public function update($updateColumns, array $columns = []) {
+    public function update($updateColumns) {
         $update = "UPDATE {$this->from} SET {$updateColumns}";
         $this->update = $update;
         return $this;
@@ -61,12 +59,6 @@ class Builder {
         }
         $execute = $result->execute();
         return $execute;
-    }
-
-    public function reset() {
-        $this->select = null;
-        $this->where = null;
-        $this->update = null;
     }
 
     public function get() {
@@ -91,15 +83,14 @@ class Builder {
             return $this->rawSql($query, $columns);
         } else if ($this->where) {
             $query .= " WHERE " . $this->where;
-            print_r($query);
-            $this->reset();
-            return $this->rawSql($query);
+            return $query;
+//            return $this->rawSql($query);
         }
 
         if (!$query) {
             $query .= "SELECT * FROM " . $this->from;
         }
-        $this->reset();
-        return $this->rawSql($query);
+//        return $this->rawSql($query);
+        return $query;
     }
 }
