@@ -3,7 +3,8 @@
 namespace Framy\Routing;
 
 use Exception;
-use Framy\Application;
+use Framy\DI\Container;
+use Twig_Environment;
 
 class Route {
 
@@ -11,10 +12,12 @@ class Route {
     private $callback;
     private $parameters = [];
     private $middleware;
-    private $app;
+    private $container;
+    private $twig;
 
-    public function __construct(Application $app) {
-        $this->app = $app;
+    public function __construct(Container $container, Twig_Environment $twig) {
+        $this->container = $container;
+        $this->twig = $twig;
     }
 
     /**
@@ -115,7 +118,8 @@ class Route {
      * @return bool|mixed
      */
     public function call() {
-        $call = new Call($this->app, $this->callback, $this->middleware, $this->parameters);
+        $call = new Call($this->container, $this->twig);
+        $call->setCallProps($this->callback, $this->middleware, $this->parameters);
         return $call->execute();
     }
 }

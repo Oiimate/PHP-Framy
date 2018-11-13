@@ -1,6 +1,5 @@
 <?php
 namespace Framy;
-use Framy\Models\User;
 use Framy\MySQL\Config;
 use Framy\MySQL\Database;
 use Framy\Routing\Router;
@@ -26,9 +25,9 @@ class Application {
     public function __construct(Config $config) {
         $this->config = $config;
         $this->setupContainer();
+        $this->setupTwig();
         $this->setupRouting();
         $this->setupMySQL();
-        $this->setupTwig();
     }
 
     private function setupContainer() {
@@ -37,7 +36,7 @@ class Application {
     }
 
     private function setupRouting() {
-        $this->router = new Router($this);
+        $this->router = new Router($this->container, $this->twig);
     }
 
     /**

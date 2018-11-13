@@ -1,18 +1,29 @@
 <?php
 namespace Framy\Routing;
 
-use Framy\Application;
+use Framy\DI\Container;
+use Twig_Environment;
 
 class Call
 {
 
-    private $app;
+    private $container;
     private $callback;
     private $middleware;
     private $parameters;
+    private $twig;
 
-    public function __construct(Application $app, $callback, $middleware, $parameters) {
-        $this->app = $app;
+    public function __construct(Container $container, Twig_Environment $twig) {
+        $this->container = $container;
+        $this->twig = $twig;
+    }
+
+    /**
+     * @param $callback
+     * @param $middleware
+     * @param $parameters
+     */
+    public function setCallProps($callback, $middleware, $parameters) {
         $this->callback = $callback;
         $this->middleware = $middleware;
         $this->parameters = $parameters;
@@ -40,14 +51,13 @@ class Call
             $this->middleware->run();
         }
 
-        $controller = $this->app->getContainer()->getInstance($controller);
-        $twig = $this->app->getTwig();
-        $controller->setTwig($twig);
+        $controller = $this->container->getInstance($controller);
+        $controller->setTwig($this->twig);
         $request = new $request();
 
         if ($this->parameters) {
             $request->setQueryParameters($this->parameters);
         }
-        return $controller->$methodName($twig, $request);
+        return $controller->$methodName($this->twig, $request);
     }
 }

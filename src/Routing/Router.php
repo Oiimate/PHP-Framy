@@ -3,8 +3,9 @@
 namespace Framy\Routing;
 
 use Exception;
-use Framy\Application;
+use Framy\DI\Container;
 use Framy\Middleware\MiddlewareInterface;
+use Twig_Environment;
 
 class Router {
 
@@ -12,14 +13,17 @@ class Router {
     private $routes = [];
     private $middleware = [];
     private $currentRoute;
-    private $app;
+    private $container;
+    private $twig;
 
     /**
      * Router constructor.
-     * @param Application $app
+     * @param Container $container
+     * @param Twig_Environment $twig
      */
-    public function __construct(Application $app) {
-        $this->app = $app;
+    public function __construct(Container $container, Twig_Environment $twig) {
+        $this->container = $container;
+        $this->twig = $twig;
 
         if (isset($_GET['url'])) {
             $this->url = $_GET['url'];
@@ -89,7 +93,7 @@ class Router {
      * @return Route
      */
     private function add(string $path, $callback, string $method) {
-        $route = (new Route($this->app))
+        $route = (new Route($this->container, $this->twig))
             ->setPath($path)
             ->setCallback($callback);
 
