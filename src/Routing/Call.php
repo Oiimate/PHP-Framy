@@ -36,6 +36,7 @@ class Call
 
     /**
      * @return bool|mixed
+     * @throws \ReflectionException
      */
     public function execute() {
         if (is_string($this->callback)) {
@@ -48,7 +49,6 @@ class Call
         }
         return false;
     }
-
 
     /**
      * @return mixed

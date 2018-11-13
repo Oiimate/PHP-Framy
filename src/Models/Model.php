@@ -61,10 +61,9 @@ abstract class Model extends Builder {
         $formattedValues = implode(", ", $values);
         if ($model_id && $model_id_value) {
             $updateExecute = $this->update($formattedValues)->where(["$model_id = $model_id_value"])->get();
-            print_r($updateExecute);
             return $updateExecute;
         }
-        $updateExecute = $this->update($formattedValues);
+        $updateExecute = $this->update($formattedValues)->get();
         return $updateExecute;
     }
 

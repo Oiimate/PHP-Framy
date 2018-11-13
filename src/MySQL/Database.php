@@ -51,6 +51,8 @@ class Database
     public function createConnection() {
         $dsn = "mysql:host={$this->host};dbname={$this->dbname}";
         $connection = new PDO($dsn, $this->user, $this->password);
+//        $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
         $this->connection = $connection;
     }
 

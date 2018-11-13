@@ -54,7 +54,6 @@ class Route {
         return $this->routePath;
     }
 
-
     /**
      * @param $url
      * @return bool
@@ -121,6 +120,7 @@ class Route {
 
     /**
      * @return bool|mixed
+     * @throws \ReflectionException
      */
     public function call() {
         $call = new Call($this->container, $this->twig);
