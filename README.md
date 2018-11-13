@@ -33,6 +33,7 @@ $router->get('/page/:id', 'Home:page');
 <br/>
 `[s]:id` can be used to make sure the parameter is a string (optional).
 
+
 ## Middleware
 
 It is possible to add [middleware](src/Middleware) to routes with the method `addMiddleware($middlewareName)`
@@ -40,4 +41,21 @@ It is possible to add [middleware](src/Middleware) to routes with the method `ad
 
 ```php
 $router->get('/', 'Home:index')->addMiddleware('Test');
+```
+
+## Auto-wiring
+
+[Auto-wiring](src/DI) can be used in a controller's constructor like below:
+
+
+```php
+class HomeController extends Controller {
+
+    private $db;
+    private $userRepo;
+
+    public function __construct(Database $db, UserRepository $userRepo) {
+        $this->db = $db;
+        $this->userRepo = $userRepo;
+    }
 ```
