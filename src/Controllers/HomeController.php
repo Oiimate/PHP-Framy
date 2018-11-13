@@ -21,16 +21,16 @@ class HomeController extends Controller {
     }
 
     public function postView(Twig_Environment $twig, Request $request) {
-        $user = new User($this->db);
-        $user->name = "Test2";
-        $user->id = 3;
-        $saveUser = $user->edit($user);
-
-        if ($saveUser) {
-            echo "Added";
-        } else {
-            echo "Error";
-        }
+//        $user = new User($this->db);
+//        $user->name = "Test2";
+//        $user->id = 3;
+//        $saveUser = $user->edit($user);
+//
+//        if ($saveUser) {
+//            echo "Added";
+//        } else {
+//            echo "Error";
+//        }
     }
 
     public function postTest(Twig_Environment $twig, Request $request) {
