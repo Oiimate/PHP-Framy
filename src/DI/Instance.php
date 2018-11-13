@@ -5,9 +5,6 @@ class Instance {
 
     private $name;
 
-    public function __construct() {
-    }
-
     /**
      * @param $name
      * @throws \Exception

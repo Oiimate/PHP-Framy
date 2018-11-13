@@ -17,8 +17,7 @@ class Database
      * @param Config $config
      * @throws Exception
      */
-    public function __construct(Config $config)
-    {
+    public function __construct(Config $config) {
         $this->host = $config->getHost();
         $this->dbname = $config->getName();
         $this->user = $config->getUser();

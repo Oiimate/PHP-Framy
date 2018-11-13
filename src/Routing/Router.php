@@ -112,17 +112,10 @@ class Router {
         }
 
         foreach ($this->routes[$_SERVER['REQUEST_METHOD']] as $route) {
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 if ($route->matchRoute($this->url)) {
                     return $route->call();
                 }
             }
-            if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-                if ($route->matchRoute($this->url)) {
-                    return $route->call();
-                }
-            }
-        }
         throw new Exception("No route found for this path");
     }
 }

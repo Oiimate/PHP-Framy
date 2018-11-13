@@ -7,10 +7,6 @@ class Reflection {
 
     private $container;
 
-    public function __construct() {
-    }
-
-
     /**
      * @param Container $container
      */
@@ -51,8 +47,7 @@ class Reflection {
      * @throws \ReflectionException
      * @throws \Exception
      */
-    public function autoWire($name)
-    {
+    public function autoWire($name) {
         $reflector = $this->initReflection($name);
         $constructor = $this->readConstructor($reflector);
         $params = $constructor->getParameters();
@@ -84,8 +79,7 @@ class Reflection {
      * @return array
      * @throws \Exception
      */
-    public function getClasses($params)
-    {
+    public function getClasses($params) {
         $classes = [];
         foreach ($params as $param) {
             $class = $param->getClass();

@@ -106,6 +106,11 @@ class Route {
         return $this->formatRoute($route);
     }
 
+    /**
+     * @param $route
+     * @param bool $input
+     * @return string
+     */
     public function formatRoute($route, $input = false) {
         if ($input) {
             $formattedRoute = trim($route, $input);

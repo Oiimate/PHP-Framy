@@ -13,6 +13,11 @@ class Call
     private $parameters;
     private $twig;
 
+    /**
+     * Call constructor.
+     * @param Container $container
+     * @param Twig_Environment $twig
+     */
     public function __construct(Container $container, Twig_Environment $twig) {
         $this->container = $container;
         $this->twig = $twig;
@@ -29,6 +34,9 @@ class Call
         $this->parameters = $parameters;
     }
 
+    /**
+     * @return bool|mixed
+     */
     public function execute() {
         if (is_string($this->callback)) {
             return $this->init();
@@ -42,6 +50,10 @@ class Call
     }
 
 
+    /**
+     * @return mixed
+     * @throws \ReflectionException
+     */
     public function init() {
         list($controllerName, $methodName) = explode(':', $this->callback);
         $controller = "Framy\\Controllers\\" . $controllerName . "Controller";
