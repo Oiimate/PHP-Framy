@@ -59,3 +59,21 @@ class HomeController extends Controller {
         $this->userRepo = $userRepo;
     }
 ```
+
+## Models (edit & save)
+
+A model can execute an update:
+
+```php
+$user = new User($this->db);
+$user->name = "Test";
+$user->id = 3;
+$saveUser = $user->edit($user);
+```
+or an insert
+
+```php
+$user = new User($this->db);
+$user->name = "Test";
+$saveUser = $user->save($user);
+```
