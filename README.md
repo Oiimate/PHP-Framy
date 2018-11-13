@@ -32,3 +32,12 @@ $router->get('/page/:id', 'Home:page');
 `[i]:id` can be used if the parameter should contain integers only.
 <br/>
 `[s]:id` can be used to make sure the parameter is a string (optional).
+
+## Middleware
+
+It is possible to add [middleware](src/Middleware) to routes with the method `addMiddleware($middlewareName)`
+
+
+```php
+$router->get('/', 'Home:index')->addMiddleware('Test');
+```
